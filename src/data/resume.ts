@@ -87,20 +87,20 @@ export const resume: ResumeData = {
       items: ['Datadog', 'New Relic', 'Rollbar', 'Splunk'],
     },
     {
-      name: 'Feature flags & internal apps',
-      items: ['LaunchDarkly', 'Retool'],
+      name: 'What I know well',
+      items: ['eCommerce', 'pointOfSalePos', 'ppcAdvertising'],
     },
     {
-      name: 'Engineering practices',
+      name: 'What I like',
       items: [
-        'Model–view–controller (MVC)',
-        'REST APIs',
-        'System performance',
+        'backendDevelopment',
+        'efficientDatabaseDesign',
+        'systemPerformance',
       ],
     },
     {
-      name: 'Product & industry domains',
-      items: ['E-commerce', 'Point of sale (POS)', 'PPC advertising'],
+      name: 'Preferred setup',
+      items: ['macOs', 'gSuite', 'zoom'],
     },
   ],
   languages: ['English — Native or bilingual', 'Spanish — Elementary'],

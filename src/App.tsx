@@ -94,8 +94,17 @@ function App() {
     <div className="resume">
       <header className="resume__header">
         <div className="resume__header-main">
-          <p className="resume__eyebrow">Resume · {resume.targetTitle}</p>
-          <h1 className="resume__name">{resume.name}</h1>
+          <p className="resume__prompt" aria-hidden="true">
+            <span className="resume__prompt-user">travis</span>
+            <span className="resume__prompt-host">@resume</span>
+            <span>:~$ </span>
+            <span className="resume__prompt-cmd">cat resume.md</span>
+          </p>
+          <p className="resume__eyebrow">{resume.targetTitle}</p>
+          <h1 className="resume__name">
+            <span>{resume.name}</span>
+            <span className="resume__caret" aria-hidden="true" />
+          </h1>
           <p className="resume__location">{resume.location}</p>
         </div>
         <nav className="resume__contact" aria-label="Contact">
@@ -128,23 +137,6 @@ function App() {
 
         <section id="skills" className="resume__section">
           <h2>Skills</h2>
-          <p className="resume__skills-intro">
-            Brand marks from{' '}
-            <a href="https://simpleicons.org/" target="_blank" rel="noreferrer">
-              Simple Icons
-            </a>{' '}
-            (inline SVG via the{' '}
-            <a
-              href="https://www.npmjs.com/package/simple-icons"
-              target="_blank"
-              rel="noreferrer"
-            >
-              simple-icons
-            </a>{' '}
-            package), Devicon for AWS and Argo CD, and custom SVGs in{' '}
-            <code>/public</code> for dbt, Dagster, and LaunchDarkly. Anything else
-            shows as text.
-          </p>
           <div className="resume__skills">
             {resume.skillGroups.map((g) => (
               <div key={g.name} className="resume__skill-group">

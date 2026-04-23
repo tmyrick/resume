@@ -1,22 +1,38 @@
 :root {
-  --text: #5c5668;
-  --text-h: #0f0d14;
-  --bg: #faf9fc;
-  --border: #e2e0e6;
-  --code-bg: #edeaf2;
-  --accent: #5b21b6;
-  --accent-border: rgba(91, 33, 182, 0.45);
+  color-scheme: dark;
+
+  /* ——— One Dark (Atom / One Dark Pro) ——— */
+  --bg: #282c34;            /* editor.background */
+  --bg-2: #21252b;          /* sideBar.background */
+  --bg-3: #2c313a;          /* list.hoverBackground */
+  --text: #abb2bf;          /* editor.foreground */
+  --text-h: #e6e6e6;        /* brighter foreground */
+  --text-mute: #5c6370;     /* comment gray */
+  --border: #3a3f4b;
+  --border-strong: #4b5263;
+  --code-bg: #21252b;
+
+  /* One Dark syntax tokens */
+  --accent: #61afef;        /* blue — functions / links */
+  --accent-2: #c678dd;      /* purple — keywords */
+  --accent-3: #e06c75;      /* red — tags / variables */
+  --string: #98c379;        /* green — strings (dates) */
+  --number: #d19a66;        /* orange — numbers / constants */
+  --cyan: #56b6c2;          /* cyan — support */
+  --yellow: #e5c07b;        /* yellow — classes / types */
+  --comment: #5c6370;       /* italic gray — comments */
+
+  --accent-border: rgba(97, 175, 239, 0.45);
 
   /* Used when `SKILL_ICON_COLOR_MODE` is `'mono'` in src/data/skillIcons.ts */
   --resume-skill-icon-color: var(--text-h);
 
-  --sans: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
-  --heading: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
-  --mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --heading: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+  --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
 
-  font: 17px/1.55 var(--sans);
-  letter-spacing: 0.01em;
-  color-scheme: light dark;
+  font: 16px/1.6 var(--sans);
+  letter-spacing: 0.005em;
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;
@@ -25,16 +41,27 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #a8a3b3;
-    --text-h: #f4f2f8;
-    --bg: #121016;
-    --border: #2a2633;
-    --code-bg: #1e1a26;
-    --accent: #a78bfa;
-    --accent-border: rgba(167, 139, 250, 0.5);
-  }
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+}
+
+body {
+  min-height: 100svh;
+  /* very subtle One-Dark-style wash; much flatter than before */
+  background:
+    radial-gradient(
+      1200px 600px at 105% -10%,
+      rgba(198, 120, 221, 0.11),
+      transparent 50%
+    ),
+    radial-gradient(
+      1200px 600px at -10% 105%,
+      rgba(97, 175, 239, 0.1),
+      transparent 40%
+    ),
+    linear-gradient(180deg, #282c34 0%, #21252b 100%);
 }
 
 #root {
@@ -45,8 +72,10 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
+::selection {
+  /* editor.selectionBackground */
+  background: #3e4451;
+  color: var(--text-h);
 }
 
 h1,
@@ -54,13 +83,36 @@ h2,
 h3,
 h4 {
   font-family: var(--heading);
+  color: var(--text-h);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-2);
 }
 
 code {
   font-family: var(--mono);
   font-size: 0.88em;
-  padding: 0.12em 0.35em;
+  padding: 0.1em 0.35em;
   border-radius: 4px;
   background: var(--code-bg);
-  color: var(--text-h);
+  color: var(--accent);
+  border: 1px solid var(--border);
+}
+
+/* Blinking terminal caret */
+@keyframes resume-caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
