@@ -1,0 +1,66 @@
+:root {
+  --text: #5c5668;
+  --text-h: #0f0d14;
+  --bg: #faf9fc;
+  --border: #e2e0e6;
+  --code-bg: #edeaf2;
+  --accent: #5b21b6;
+  --accent-border: rgba(91, 33, 182, 0.45);
+
+  /* Used when `SKILL_ICON_COLOR_MODE` is `'mono'` in src/data/skillIcons.ts */
+  --resume-skill-icon-color: var(--text-h);
+
+  --sans: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+  --heading: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+  --mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
+
+  font: 17px/1.55 var(--sans);
+  letter-spacing: 0.01em;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #a8a3b3;
+    --text-h: #f4f2f8;
+    --bg: #121016;
+    --border: #2a2633;
+    --code-bg: #1e1a26;
+    --accent: #a78bfa;
+    --accent-border: rgba(167, 139, 250, 0.5);
+  }
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  min-height: 100svh;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--heading);
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  padding: 0.12em 0.35em;
+  border-radius: 4px;
+  background: var(--code-bg);
+  color: var(--text-h);
+}
