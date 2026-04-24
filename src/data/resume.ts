@@ -47,11 +47,6 @@ export const resume: ResumeData = {
       href: 'mailto:myricktc@gmail.com',
     },
     {
-      label: 'Phone',
-      display: '503-504-3751',
-      href: 'tel:+15035043751',
-    },
-    {
       label: 'LinkedIn',
       display: 'linkedin.com/in/travis-myrick',
       href: 'https://www.linkedin.com/in/travis-myrick',
