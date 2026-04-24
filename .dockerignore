@@ -1,1 +1,10 @@
+.git
+.github
+node_modules
+dist
+.vscode
+.cursor
+*.log
+.DS_Store
 fly.toml
+README.md
