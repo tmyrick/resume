@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { resume } from './data/resume'
 import type { RoleEntry } from './data/resume'
 import type { SkillGraphic } from './data/skillIcons'
@@ -7,6 +8,91 @@ import {
   skillIconFill,
 } from './data/skillIcons'
 import './App.css'
+
+type Theme = 'light' | 'dark'
+
+const THEME_STORAGE_KEY = 'resume-theme'
+
+function readInitialTheme(): Theme {
+  if (typeof document !== 'undefined') {
+    const fromAttr = document.documentElement.dataset.theme
+    if (fromAttr === 'light' || fromAttr === 'dark') return fromAttr
+  }
+  return 'dark'
+}
+
+function DownloadPdfButton() {
+  const handleDownload = () => {
+    const detailsEls = Array.from(document.querySelectorAll('details'))
+    const wasOpen = detailsEls.map((d) => d.open)
+    detailsEls.forEach((d) => {
+      d.open = true
+    })
+
+    const originalTitle = document.title
+    document.title = 'Travis Myrick - Resume'
+
+    const restore = () => {
+      detailsEls.forEach((d, i) => {
+        d.open = wasOpen[i]
+      })
+      document.title = originalTitle
+      window.removeEventListener('afterprint', restore)
+    }
+    window.addEventListener('afterprint', restore)
+
+    window.print()
+  }
+
+  return (
+    <button
+      type="button"
+      className="resume__download"
+      onClick={handleDownload}
+      aria-label="Download resume as PDF"
+      title="Download resume as PDF"
+    >
+      <span className="resume__download-prefix" aria-hidden="true">
+        $
+      </span>
+      <span className="resume__download-cmd">save</span>
+      <span className="resume__download-arg">resume.pdf</span>
+    </button>
+  )
+}
+
+function ThemeToggle() {
+  const [theme, setTheme] = useState<Theme>(readInitialTheme)
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, theme)
+    } catch {
+      // ignore storage errors (private mode, etc.)
+    }
+  }, [theme])
+
+  const next: Theme = theme === 'dark' ? 'light' : 'dark'
+
+  return (
+    <button
+      type="button"
+      className="resume__theme-toggle"
+      onClick={() => setTheme(next)}
+      aria-label={`Switch to ${next} mode`}
+      title={`Switch to ${next} mode`}
+    >
+      <span className="resume__theme-toggle-prefix" aria-hidden="true">
+        //
+      </span>
+      <span className="resume__theme-toggle-key" aria-hidden="true">
+        theme:
+      </span>
+      <span className="resume__theme-toggle-value">{theme}</span>
+    </button>
+  )
+}
 
 function SkillLogo({
   label,
@@ -92,6 +178,10 @@ function groupExperienceRoles(roles: RoleEntry[]): RoleBlock[] {
 function App() {
   return (
     <div className="resume">
+      <div className="resume__actions">
+        <DownloadPdfButton />
+        <ThemeToggle />
+      </div>
       <header className="resume__header">
         <div className="resume__header-main">
           <p className="resume__prompt" aria-hidden="true">

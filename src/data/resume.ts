@@ -117,7 +117,7 @@ export const resume: ResumeData = {
           dates: 'Sep 2023 – Present',
           emphasis: 'featured',
           note:
-            'Product engineering across the stack; happy to share scope, systems, and impact in conversation.',
+            'Product engineering across the stack; Ruby on Rails, TypeScript, React, GraphQL, PostgreSQL, MongoDB' + '\n' + 'happy to share scope, systems, and impact in conversation.',
         },
         {
           title: 'Senior Software Engineer I',
