@@ -2,6 +2,7 @@ import type { SimpleIcon } from 'simple-icons'
 import deviconArgocd from 'devicon/icons/argocd/argocd-original.svg?url'
 import deviconAws from 'devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg?url'
 import {
+  siClaude,
   siDatadog,
   siDocker,
   siElasticsearch,
@@ -10,6 +11,7 @@ import {
   siGoogleads,
   siGraphql,
   siJavascript,
+  siMongodb,
   siMysql,
   siNewrelic,
   siNodedotjs,
@@ -64,6 +66,7 @@ const byLabelSimple: Record<string, SimpleIcon> = {
   GraphQL: siGraphql,
   SQL: siMysql,
   PostgreSQL: siPostgresql,
+  MongoDB: siMongodb,
   Elasticsearch: siElasticsearch,
   Snowflake: siSnowflake,
   Docker: siDocker,
@@ -75,6 +78,7 @@ const byLabelSimple: Record<string, SimpleIcon> = {
   Splunk: siSplunk,
   Retool: siRetool,
   'PPC advertising': siGoogleads,
+  Claude: siClaude,
 }
 
 /** `<img>` skills that should render as white (CSS filter on the asset). */

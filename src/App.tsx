@@ -94,6 +94,27 @@ function ThemeToggle() {
   )
 }
 
+/**
+ * Resume data uses camelCase keys for items without an icon (e.g. `pointOfSale`).
+ * Those render as code-style chips on the live site, but a printed resume should
+ * read them as plain English. This map only affects the PDF/print output.
+ */
+const PDF_SKILL_LABELS: Record<string, string> = {
+  eCommerce: 'eCommerce',
+  pointOfSale: 'Point of Sale (POS)',
+  ppcAdvertising: 'PPC advertising',
+  backendDevelopment: 'Backend development',
+  efficientDatabaseDesign: 'Efficient database design',
+  systemPerformance: 'System performance',
+  macOs: 'macOS',
+  gSuite: 'Google Workspace',
+  zoom: 'Zoom',
+}
+
+function pdfSkillLabel(label: string): string {
+  return PDF_SKILL_LABELS[label] ?? label
+}
+
 function SkillLogo({
   label,
   graphic,
@@ -101,53 +122,72 @@ function SkillLogo({
   label: string
   graphic: SkillGraphic | undefined
 }) {
+  const printLabel = (
+    <span className="resume__skill-pdf-label" aria-hidden="true">
+      {pdfSkillLabel(label)}
+    </span>
+  )
+
   if (!graphic) {
     return (
-      <span className="resume__skill-fallback" title={label} aria-label={label}>
-        {label}
-      </span>
+      <>
+        <span
+          className="resume__skill-fallback"
+          title={label}
+          aria-label={label}
+        >
+          {label}
+        </span>
+        {printLabel}
+      </>
     )
   }
 
   if (graphic.kind === 'image') {
     const whiteImg = SKILL_LOGO_WHITE_IMG.has(label)
     return (
-      <span
-        className={[
-          'resume__skill-logo',
-          graphic.wide ? 'resume__skill-logo--wide' : '',
-          whiteImg ? 'resume__skill-logo--white-img' : '',
-        ]
-          .filter(Boolean)
-          .join(' ')}
-        title={label}
-        aria-label={label}
-      >
-        <img
-          src={graphic.src}
-          alt=""
-          className="resume__skill-logo-img"
-          loading="lazy"
-          decoding="async"
-          draggable={false}
-        />
-      </span>
+      <>
+        <span
+          className={[
+            'resume__skill-logo',
+            graphic.wide ? 'resume__skill-logo--wide' : '',
+            whiteImg ? 'resume__skill-logo--white-img' : '',
+          ]
+            .filter(Boolean)
+            .join(' ')}
+          title={label}
+          aria-label={label}
+        >
+          <img
+            src={graphic.src}
+            alt=""
+            className="resume__skill-logo-img"
+            loading="lazy"
+            decoding="async"
+            draggable={false}
+          />
+        </span>
+        {printLabel}
+      </>
     )
   }
 
   const { icon } = graphic
   return (
-    <span className="resume__skill-logo" title={label} aria-label={label}>
-      <svg
-        className="resume__skill-logo-svg"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden={true}
-        focusable={false}
-      >
-        <path fill={skillIconFill(label, icon)} d={icon.path} />
-      </svg>
-    </span>
+    <>
+      <span className="resume__skill-logo" title={label} aria-label={label}>
+        <svg
+          className="resume__skill-logo-svg"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden={true}
+          focusable={false}
+        >
+          <path fill={skillIconFill(label, icon)} d={icon.path} />
+        </svg>
+      </span>
+      {printLabel}
+    </>
   )
 }
 
@@ -344,7 +384,6 @@ function App() {
 
       <footer className="resume__footer">
         <p>
-          meow!
         </p>
       </footer>
     </div>

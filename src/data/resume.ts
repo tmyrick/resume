@@ -53,7 +53,7 @@ export const resume: ResumeData = {
     },
   ],
   summary: [
-    'Senior software engineer. Strong footing in API-oriented design (REST), structured UI architecture (MVC), and improving system performance.',
+    'Senior software engineer. Strong footing in backend architecture, API-oriented design (REST), structured UI architecture (MVC), and improving system performance.',
     'Career foundation includes five years in technical support, one year in account management, and seven years (and counting) in software development—experience that shows up in clear communication, pragmatic prioritization, and reliable delivery.',
   ],
   skillGroups: [
@@ -67,7 +67,7 @@ export const resume: ResumeData = {
     },
     {
       name: 'Data stores & warehousing',
-      items: ['SQL', 'PostgreSQL', 'Elasticsearch', 'Snowflake'],
+      items: ['PostgreSQL', 'MongoDB', 'SQL', 'Elasticsearch', 'Snowflake'],
     },
     {
       name: 'Analytics & orchestration',
@@ -83,7 +83,7 @@ export const resume: ResumeData = {
     },
     {
       name: 'What I know well',
-      items: ['eCommerce', 'pointOfSalePos', 'ppcAdvertising'],
+      items: ['eCommerce', 'pointOfSale', 'ppcAdvertising'],
     },
     {
       name: 'What I like',
@@ -95,7 +95,7 @@ export const resume: ResumeData = {
     },
     {
       name: 'Preferred setup',
-      items: ['macOs', 'gSuite', 'zoom'],
+      items: ['macOs', 'gSuite', 'zoom', 'Claude'],
     },
   ],
   languages: ['English — Native or bilingual', 'Spanish — Elementary'],
@@ -180,10 +180,8 @@ export const resume: ResumeData = {
         {
           title: 'Earlier — application & technical support',
           dates: 'Oct 2012 – Aug 2016',
-          collapsible: true,
           highlights: [
-            'Tier 3–2: SME coverage, bug triage and fixes (sites, proprietary apps, Rails/JS), enhancement vetting, docs, training, platform feature input, code-review QA.',
-            'Tier 1: CMS HTML/CSS updates, KB, DNS, permissions, cross-team coordination with AMs and SEO.',
+            'Tier 1–3: SME coverage, bug triage and Rails/JS fixes on sites and proprietary apps, enhancement vetting, code-review QA, docs and training, CMS HTML/CSS updates, KB, DNS and permissions, cross-team coordination with AMs and SEO.',
           ],
         },
       ],

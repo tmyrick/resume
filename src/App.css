@@ -746,6 +746,14 @@
 
 /* ————————————————————— Print / PDF ————————————————————— */
 
+/*
+ * On screen, the print-only skill label is hidden so the icon grid stays as-is.
+ * In @media print below, the icon swaps out and this label takes its place.
+ */
+.resume__skill-pdf-label {
+  display: none;
+}
+
 @media print {
   /* Force a clean light palette regardless of the active theme */
   :root,
@@ -753,18 +761,18 @@
   :root[data-theme='light'] {
     --bg: #ffffff;
     --bg-2: #ffffff;
-    --bg-3: #f4f4f5;
+    --bg-3: #ffffff;
     --text: #1f2329;
     --text-h: #000000;
     --text-mute: #5b5f66;
     --border: #c8c8ca;
     --border-strong: #9b9ba0;
-    --code-bg: #f4f4f5;
+    --code-bg: #ffffff;
     --accent: #1a4fbf;
-    --accent-2: #7a1f80;
+    --accent-2: #1f2329;
     --accent-3: #b03a30;
-    --string: #2f7d2f;
-    --comment: #6b6f76;
+    --string: #1f2329;
+    --comment: #5b5f66;
     --accent-border: #1a4fbf;
     --body-bg: #ffffff;
   }
@@ -774,65 +782,152 @@
     background: #ffffff !important;
   }
 
-  body {
-    background: #ffffff !important;
-  }
-
+  /*
+   * Vertical breathing room is provided by @page (so every page — not just
+   * the first — gets a top/bottom margin). Horizontal margins live on .resume
+   * because @page sides can't absorb them as cleanly.
+   */
   .resume {
     max-width: none;
-    padding: 0.4in 0.5in;
+    padding: 0 0.65in;
     margin: 0;
   }
 
-  /* Hide the floating action buttons in print */
+  /* Hide screen-only chrome */
   .resume__actions,
   .resume__theme-toggle,
-  .resume__download {
+  .resume__download,
+  .resume__toc,
+  .resume__caret,
+  .resume__prompt {
     display: none !important;
   }
 
-  /* Drop the in-page table of contents — anchors aren't useful in a PDF */
-  .resume__toc {
-    display: none;
+  /*
+   * Strip the IDE/markdown decorations (## , // , @ , fn , (), "…").
+   * The semantic content is preserved; only the cosmetic prefixes/suffixes go.
+   */
+  .resume__eyebrow::before,
+  .resume__location::before,
+  .resume__section h2::before,
+  .resume__skill-group h3::before,
+  .resume__spoken h3::before,
+  .resume__company-head h3::before,
+  .resume__company-head h3::after,
+  .resume__dates::before,
+  .resume__dates::after,
+  .resume__compact-heading::before,
+  .resume__compact-dates::before,
+  .resume__compact-dates::after,
+  .resume__footer p::before {
+    content: none !important;
+    margin: 0 !important;
   }
 
-  /* No blinking caret in a static PDF */
-  .resume__caret {
-    display: none;
+  /* Section heading reads like a normal resume heading without the ## prefix */
+  .resume__section h2 {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.75rem;
   }
 
-  /* Tighten vertical rhythm so the resume fits cleanly on a page */
+  /* Tighten vertical rhythm */
   .resume__header {
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.9rem;
   }
 
   .resume__section {
-    margin-bottom: 1.25rem;
-  }
-
-  .resume__company {
     margin-bottom: 1rem;
   }
 
-  .resume__footer {
-    margin-top: 1.5rem;
-    padding-top: 0.75rem;
+  .resume__company {
+    margin-bottom: 0.85rem;
   }
 
-  /* Expand collapsed details and hide the toggle affordance */
+  .resume__footer {
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+  }
+
+  /* Fully expand <details>; hide the disclosure UI */
   .resume__details summary {
     display: none;
   }
 
-  .resume__details[open] summary {
-    display: none;
+  /*
+   * Skills: drop the icon grid and render each group as a comma-separated
+   * line of plain-text labels. Reads as a real resume entry instead of a
+   * design system showcase.
+   */
+  .resume__skill-logo,
+  .resume__skill-fallback {
+    display: none !important;
   }
 
-  /* Avoid awkward page breaks inside a single role or company */
+  .resume__skills {
+    display: block;
+  }
+
+  /* Spoken languages are intentionally omitted from the printed resume */
+  .resume__spoken {
+    display: none !important;
+  }
+
+  .resume__skill-group {
+    margin-bottom: 0.4rem;
+  }
+
+  .resume__skill-group h3 {
+    display: inline;
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-h);
+    text-transform: none;
+    letter-spacing: 0;
+    margin: 0;
+  }
+
+  .resume__skill-group h3::after {
+    content: ': ';
+    color: var(--text-h);
+    font-weight: 600;
+  }
+
+  .resume__skill-logos {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+  }
+
+  .resume__skill-logos li {
+    display: inline;
+  }
+
+  .resume__skill-pdf-label {
+    display: inline;
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    color: var(--text);
+  }
+
+  .resume__skill-logos li:not(:last-child) .resume__skill-pdf-label::after {
+    content: ', ';
+  }
+
+  /*
+   * Don't lock whole sections together — that's what was creating the giant
+   * empty page-1 block. Roles and companies still hold together internally.
+   */
   .resume__company,
-  .resume__role,
-  .resume__section {
+  .resume__role {
     break-inside: avoid;
     page-break-inside: avoid;
   }
@@ -842,7 +937,6 @@
     page-break-after: avoid;
   }
 
-  /* Ensure links stay readable on white */
   a {
     color: var(--accent) !important;
     text-decoration: none;
@@ -850,6 +944,13 @@
 }
 
 /* Suggest A4 / Letter without forcing it; lets the user pick in the dialog */
+/*
+ * Per-page top/bottom margins so every page (not just page 1) has breathing
+ * room. .resume handles the side margins. To suppress the browser-injected
+ * header (date + document title) and footer (URL + page #) on these margins,
+ * uncheck "Headers and footers" in the print dialog — most browsers remember
+ * this preference across sessions.
+ */
 @page {
-  margin: 0.5in;
+  margin: 0.6in 0 0.5in;
 }
