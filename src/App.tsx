@@ -106,9 +106,6 @@ const PDF_SKILL_LABELS: Record<string, string> = {
   backendDevelopment: 'Backend development',
   efficientDatabaseDesign: 'Efficient database design',
   systemPerformance: 'System performance',
-  macOs: 'macOS',
-  gSuite: 'Google Workspace',
-  zoom: 'Zoom',
 }
 
 function pdfSkillLabel(label: string): string {
@@ -310,12 +307,18 @@ function App() {
                         key={`compact-${blockIdx}`}
                         className="resume__role resume__role--compact-block"
                       >
-                        <p className="resume__compact-heading">Earlier titles</p>
+                        <p className="resume__compact-heading">Previous Roles:</p>
                         <ul className="resume__compact-list">
                           {block.roles.map((role) => (
                             <li key={role.title}>
                               <span className="resume__compact-title">
                                 {role.title}
+                              </span>
+                              <span
+                                className="resume__compact-separator"
+                                aria-hidden="true"
+                              >
+                                |
                               </span>
                               <span className="resume__compact-dates">
                                 {role.dates}

@@ -2,7 +2,6 @@ import type { SimpleIcon } from 'simple-icons'
 import deviconArgocd from 'devicon/icons/argocd/argocd-original.svg?url'
 import deviconAws from 'devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg?url'
 import {
-  siClaude,
   siDatadog,
   siDocker,
   siElasticsearch,
@@ -44,7 +43,7 @@ const PUBLIC_SVG_BY_LABEL: Record<string, string> = {
 }
 
 /**
- * [Devicon](https://devicon.dev/) — AWS, Argo CD.
+ * [Devicon](https://devicon.dev/) - AWS, Argo CD.
  */
 const DEVICON_BY_LABEL: Record<string, string> = {
   AWS: deviconAws,
@@ -78,7 +77,6 @@ const byLabelSimple: Record<string, SimpleIcon> = {
   Splunk: siSplunk,
   Retool: siRetool,
   'PPC advertising': siGoogleads,
-  Claude: siClaude,
 }
 
 /** `<img>` skills that should render as white (CSS filter on the asset). */

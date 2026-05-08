@@ -53,8 +53,7 @@ export const resume: ResumeData = {
     },
   ],
   summary: [
-    'Senior software engineer. Strong footing in backend architecture, API-oriented design (REST), structured UI architecture (MVC), and improving system performance.',
-    'Career foundation includes five years in technical support, one year in account management, and seven years (and counting) in software development—experience that shows up in clear communication, pragmatic prioritization, and reliable delivery.',
+    'Senior Backend / Full-Stack Engineer with 7+ years in software development and a prior foundation in technical support and account management. Strong in Ruby on Rails, API design, data modeling, PostgreSQL, MongoDB, Snowflake, TypeScript, React, and observability. Known for turning ambiguous business requirements into reliable backend systems and clear technical execution.',
   ],
   skillGroups: [
     {
@@ -85,20 +84,8 @@ export const resume: ResumeData = {
       name: 'What I know well',
       items: ['eCommerce', 'pointOfSale', 'ppcAdvertising'],
     },
-    {
-      name: 'What I like',
-      items: [
-        'backendDevelopment',
-        'efficientDatabaseDesign',
-        'systemPerformance',
-      ],
-    },
-    {
-      name: 'Preferred setup',
-      items: ['macOs', 'gSuite', 'zoom', 'Claude'],
-    },
   ],
-  languages: ['English — Native or bilingual', 'Spanish — Elementary'],
+  languages: ['English - Native or bilingual', 'Spanish - Elementary'],
   education: [
     {
       school: 'Portland State University',
@@ -116,8 +103,17 @@ export const resume: ResumeData = {
           title: 'Senior Software Engineer II',
           dates: 'Sep 2023 – Present',
           emphasis: 'featured',
-          note:
-            'Product engineering across the stack; Ruby on Rails, TypeScript, React, GraphQL, PostgreSQL, MongoDB' + '\n' + 'happy to share scope, systems, and impact in conversation.',
+          highlights: [
+            "Senior product engineer building backend and full-stack systems for Dutchie\u2019s cannabis commerce platform, with a focus on Ruby on Rails APIs, data modeling, reporting workflows, and customer-facing product surfaces.",
+            'Designed and implemented REST/GraphQL API endpoints supporting Brand Portal reporting and inventory insights, including paginated resources, filtering, sorting, authorization, serialization, and Snowflake-backed analytics data.',
+            'Built backend workflows that translate complex business concepts across brands, retailers, locations, POS integrations, inventory levels, sales velocity, and product availability into reliable API responses.',
+            'Built and maintained third-party integrations end-to-end - partner API contracts, webhook handling, retry and idempotency strategies, and mapping external data shapes into reliable internal models the rest of the platform can depend on.',
+            'Improved system observability and debugging using Datadog, structured logging, and targeted instrumentation across Rails services and data workflows.',
+            'Built internal Claude Skills wired to multiple MCP servers to accelerate incident troubleshooting and automate repetitive engineering workflows - compressing multi-step investigations into single-prompt diagnostics and unlocking broader efficiency gains across the team.',
+            'Partnered with product, analytics, design, and engineering stakeholders to scope ambiguous reporting features, clarify data contracts, and ship pragmatic solutions across legacy and evolving systems.',
+            'Worked across PostgreSQL, MongoDB, Snowflake, Rails, React, TypeScript, and GraphQL in a large production application with high operational and data-quality demands.',
+            'Mentored and unblocked teammates through code review, implementation planning, debugging, and architectural tradeoff discussions.',
+          ],
         },
         {
           title: 'Senior Software Engineer I',
@@ -178,7 +174,7 @@ export const resume: ResumeData = {
           ],
         },
         {
-          title: 'Earlier — application & technical support',
+          title: 'Earlier - application & technical support',
           dates: 'Oct 2012 – Aug 2016',
           highlights: [
             'Tier 1–3: SME coverage, bug triage and Rails/JS fixes on sites and proprietary apps, enhancement vetting, code-review QA, docs and training, CMS HTML/CSS updates, KB, DNS and permissions, cross-team coordination with AMs and SEO.',

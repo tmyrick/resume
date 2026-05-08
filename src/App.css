@@ -472,16 +472,10 @@
 .resume__compact-heading {
   margin: 0 0 0.4rem;
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.82rem;
   font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: lowercase;
-  color: var(--comment);
-}
-
-.resume__compact-heading::before {
-  content: '// ';
-  color: var(--accent-2);
+  letter-spacing: 0.02em;
+  color: var(--text);
 }
 
 .resume__compact-list {
@@ -497,7 +491,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.3rem 0.7rem;
+  gap: 0.3rem 0.5rem;
   font-size: 0.82rem;
   line-height: 1.4;
   font-family: var(--mono);
@@ -508,20 +502,15 @@
   font-weight: 400;
 }
 
+.resume__compact-separator {
+  color: var(--comment);
+  font-weight: 400;
+}
+
 .resume__compact-dates {
   color: var(--string);
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   white-space: nowrap;
-}
-
-.resume__compact-dates::before {
-  content: '"';
-  color: var(--comment);
-}
-
-.resume__compact-dates::after {
-  content: '"';
-  color: var(--comment);
 }
 
 .resume__details {
@@ -816,9 +805,6 @@
   .resume__company-head h3::after,
   .resume__dates::before,
   .resume__dates::after,
-  .resume__compact-heading::before,
-  .resume__compact-dates::before,
-  .resume__compact-dates::after,
   .resume__footer p::before {
     content: none !important;
     margin: 0 !important;
